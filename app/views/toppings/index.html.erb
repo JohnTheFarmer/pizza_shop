@@ -1,0 +1,16 @@
+<div class="container mx-auto py-4">
+  <h1 class="text-3xl font-bold">Manage Toppings</h1>
+  <%= link_to 'New Topping', new_topping_path, class: 'btn btn-primary' %>
+  <ul class="space-y-2">
+    <% @toppings.each do |topping| %>
+      <li class="flex justify-between items-center">
+        <%= topping.name %>
+        <span class="text-sm text-gray-500"><%= topping.description %></span>
+        <div class="space-x-2">
+          <%= link_to 'Edit', edit_topping_path(topping), class: 'btn btn-secondary' %>
+          <%= link_to 'Delete', topping, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
