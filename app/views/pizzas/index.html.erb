@@ -5,7 +5,7 @@
 
   <!-- New Pizza Button -->
   <div class="text-center mb-6">
-    <%= link_to 'New Pizza', new_pizza_path, 
+    <%= link_to 'New Pizza', new_pizza_path,
           class: 'bg-green-700 px-4 py-2 rounded-md text-white border-none hover:bg-green-600 hover:shadow-lg transition duration-200' %>
   </div>
 
@@ -13,13 +13,13 @@
   <ul class="space-y-4">
     <% @pizzas.each do |pizza| %>
       <li class="bg-white shadow-lg rounded-md p-4 relative">
-        
+
         <!-- Action Buttons in Top-Right -->
         <div class="absolute top-2 right-2 space-x-2">
-          <%= link_to 'Edit', edit_pizza_path(pizza), 
+          <%= link_to 'Edit', edit_pizza_path(pizza),
                 class: 'bg-blue-500 px-3 py-1 rounded-md text-white border-none hover:bg-blue-400 hover:shadow-md transition duration-200 text-sm' %>
-          <%= link_to 'Delete', pizza_path(pizza), 
-                data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, 
+          <%= link_to 'Delete', pizza_path(pizza),
+                data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" },
                 class: 'bg-red-500 px-3 py-1 rounded-md text-white border-none hover:bg-red-400 hover:shadow-md transition duration-200 text-sm' %>
         </div>
 

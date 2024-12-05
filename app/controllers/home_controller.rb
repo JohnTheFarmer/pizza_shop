@@ -3,5 +3,4 @@ class HomeController < ApplicationController
       # Raw data for pizzas and toppings
       @pizzas = Pizza.all
     end
-  end
-  
+end
