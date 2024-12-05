@@ -15,13 +15,13 @@ User.find_or_create_by!(email: 'owner@test.com') do |user|
     user.password_confirmation = 'password'
     user.role = 'owner'
   end
-  
+
   User.find_or_create_by!(email: 'chef@test.com') do |user|
     user.password = 'password'
     user.password_confirmation = 'password'
     user.role = 'chef'
   end
-  
+
   User.find_or_create_by!(email: 'customer@test.com') do |user|
     user.password = 'password'
     user.password_confirmation = 'password'
@@ -40,26 +40,25 @@ pineapple = Topping.find_or_create_by!(name: 'Pineapple') { |t| t.description = 
 bbq_chicken = Topping.find_or_create_by!(name: 'BBQ Chicken') { |t| t.description = 'Grilled BBQ chicken' }
 
 # Create Pizzas only if they do not exist
-margherita = Pizza.find_or_create_by!(name: 'Margherita') do |pizza|
-  pizza.toppings << [pepperoni, mushrooms]  # Add toppings to Margherita
+Pizza.find_or_create_by!(name: 'Margherita') do |pizza|
+  pizza.toppings << [ pepperoni, mushrooms ]  # Add toppings to Margherita
 end
 
-pepperoni_pizza = Pizza.find_or_create_by!(name: 'Pepperoni') do |pizza|
+Pizza.find_or_create_by!(name: 'Pepperoni') do |pizza|
   pizza.toppings << pepperoni  # Add only pepperoni
 end
 
-vegetarian_pizza = Pizza.find_or_create_by!(name: 'Vegetarian') do |pizza|
-  pizza.toppings << [bell_peppers, onions, olives, mushrooms]  # Multiple toppings for Vegetarian
+Pizza.find_or_create_by!(name: 'Vegetarian') do |pizza|
+  pizza.toppings << [ bell_peppers, onions, olives, mushrooms ]  # Multiple toppings for Vegetarian
 end
 
-hawaiian_pizza = Pizza.find_or_create_by!(name: 'Hawaiian') do |pizza|
+Pizza.find_or_create_by!(name: 'Hawaiian') do |pizza|
   pizza.toppings << pineapple  # Only pineapple topping
 end
 
-bbq_chicken_pizza = Pizza.find_or_create_by!(name: 'BBQ Chicken') do |pizza|
-  pizza.toppings << [bbq_chicken, onions]  # BBQ Chicken with BBQ Chicken and Onions
+Pizza.find_or_create_by!(name: 'BBQ Chicken') do |pizza|
+  pizza.toppings << [ bbq_chicken, onions ]  # BBQ Chicken with BBQ Chicken and Onions
 end
 
 # Check if the data was added successfully
 puts "Created #{Pizza.count} pizzas and #{Topping.count} toppings."
-

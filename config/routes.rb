@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :pizzas do
     member do
-      get 'add_topping/:topping_id', to: 'pizzas#add_topping', as: :add_topping
-      get 'remove_topping/:topping_id', to: 'pizzas#remove_topping', as: :remove_topping
+      get "add_topping/:topping_id", to: "pizzas#add_topping", as: :add_topping
+      get "remove_topping/:topping_id", to: "pizzas#remove_topping", as: :remove_topping
     end
   end
 
   resources :toppings
-  root 'home#index'
+  root "home#index"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
