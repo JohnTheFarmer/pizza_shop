@@ -1,0 +1,13 @@
+<h1>Edit Pizza</h1>
+<%= form_with(model: @pizza) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :toppings %><br>
+    <%= form.collection_check_boxes :topping_ids, @toppings, :id, :name %>
+  </div>
+  <%= form.submit 'Update Pizza' %>
+<% end %>
+<%= link_to 'Back', pizzas_path%>

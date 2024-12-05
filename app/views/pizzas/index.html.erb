@@ -1,0 +1,23 @@
+<div class="container mx-auto py-4">
+<h1>Pizzas</h1>
+<%= link_to 'New Pizza', new_pizza_path %>
+<ul>
+  <% @pizzas.each do |pizza| %>
+    <li>
+      <%= pizza.name %> |  <!-- Display pizza name -->
+      <strong>Toppings:</strong>
+      <% if pizza.toppings.any? %>
+        <ul>
+          <% pizza.toppings.each do |topping| %>
+            <li><%= topping.name %></li> <!-- Display the topping name -->
+          <% end %>
+        </ul>
+      <% else %>
+        No toppings added yet.
+      <% end %>
+      <%= link_to 'Edit', edit_pizza_path(pizza) %> |  <!-- Edit link -->
+      <%= link_to 'Delete', pizza_path(pizza), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" } %> <!-- Delete link -->
+    </li>
+  <% end %>
+</ul>
+</div>
