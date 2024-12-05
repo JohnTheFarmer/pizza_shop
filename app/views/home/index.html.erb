@@ -12,9 +12,12 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
     <% @pizzas.each do |pizza| %>
       <div class="bg-white shadow-lg rounded-xl p-8">
-        <h3 class="text-3xl font-semibold text-gray-800 mb-3"><%= pizza[:name] %></h3>
-        <p class="text-gray-600 mb-2"><%= pizza[:description] %></p>
-        
+        <h3 class="text-3xl font-semibold text-gray-800 mb-3"><%= pizza.name %></h3>
+        <% if pizza.toppings.any? %>
+        <p class="text-sm text-gray-600"><%= pizza.toppings.map(&:name).join(', ') %></p>
+        <% else %>
+          <p class="text-sm text-gray-500">No toppings added yet.</p>
+        <% end %>        
 
       </div>
     <% end %>
