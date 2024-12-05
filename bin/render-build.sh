@@ -11,3 +11,6 @@ bundle exec rails assets:clean
 # Uncomment the following line:
 
 bundle exec rails db:migrate
+
+# added default data and users for cloud testing
+bundle exec rake db:seed
