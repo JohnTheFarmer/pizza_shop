@@ -1,13 +1,30 @@
-<h1>New Pizza</h1>
-<%= form_with(model: @pizza) do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="container mx-auto py-6 max-w-3xl">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">New Pizza</h1>
+
+  <%= form_with(model: @pizza, local: true) do |form| %>
+    <div class="mb-6">
+      <%= form.label :name, 'Pizza Name', class: 'block text-sm font-semibold text-gray-700' %>
+      <%= form.text_field :name, class: 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500' %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :topping_ids, 'Toppings', class: 'block text-sm font-semibold text-gray-700' %><br>
+      <div class="grid grid-cols-2 gap-4 mt-2">
+        <%= form.collection_check_boxes :topping_ids, @toppings, :id, :name do |b| %>
+          <div class="flex items-center space-x-2">
+            <%= b.check_box(class: 'form-checkbox h-4 w-4 text-blue-500') %>
+            <%= b.label(class: 'text-sm text-gray-700') { b.object.name } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <%= form.submit 'Create Pizza', class: 'w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50' %>
+    </div>
+  <% end %>
+
+  <div class="mt-4 text-center">
+    <%= link_to 'Back', pizzas_path, class: 'text-blue-500 hover:text-blue-700' %>
   </div>
-  <div>
-    <%= form.label :toppings %><br>
-    <%= form.collection_check_boxes :topping_ids, @toppings, :id, :name %>
-  </div>
-  <%= form.submit 'Create Pizza' %>
-<% end %>
-<%= link_to 'Back', pizzas_path %>
+</div>
