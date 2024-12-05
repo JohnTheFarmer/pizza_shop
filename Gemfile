@@ -51,6 +51,11 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rspec-rails"
+  gem "factory_bot_rails"  # For creating test data
+  gem "faker"              # For generating fake data (optional)
+  gem "database_cleaner"   # For cleaning the database between tests (optional)
 end
 
 group :development do
