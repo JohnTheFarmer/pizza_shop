@@ -1,7 +1,10 @@
 class PizzasController < ApplicationController
     before_action :set_pizza, only: %i[show edit update destroy add_topping remove_topping]
     before_action :set_topping, only: %i[add_topping remove_topping]
-  
+    before_action :authenticate_user!
+    before_action :authorize_owner_or_chef, only: [:index]
+
+
     def index
       @pizzas = Pizza.all
     end
@@ -72,6 +75,12 @@ class PizzasController < ApplicationController
   
     private
   
+    def authorize_owner_or_chef
+      unless current_user.role.in?(%w[owner chef])
+        redirect_to root_path, alert: "You are not authorized to access this page."
+      end
+    end
+
     def set_pizza
       @pizza = Pizza.find(params[:id])
     end

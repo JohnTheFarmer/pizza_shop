@@ -1,5 +1,7 @@
 class ToppingsController < ApplicationController
   before_action :set_topping, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+  before_action :authorize_owner, only: [:index]
 
   def show
   end
@@ -50,6 +52,10 @@ class ToppingsController < ApplicationController
 
   private
 
+    def authorize_owner
+      redirect_to root_path, alert: "You are not authorized to access this page." unless current_user.role == "owner"
+    end
+    
     def set_topping
       @topping = Topping.find(params[:id])
     rescue ActiveRecord::RecordNotFound
