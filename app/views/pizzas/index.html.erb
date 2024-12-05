@@ -1,23 +1,29 @@
-<div class="container mx-auto py-4">
-<h1>Pizzas</h1>
-<%= link_to 'New Pizza', new_pizza_path %>
-<ul>
-  <% @pizzas.each do |pizza| %>
-    <li>
-      <%= pizza.name %> |  <!-- Display pizza name -->
-      <strong>Toppings:</strong>
-      <% if pizza.toppings.any? %>
-        <ul>
-          <% pizza.toppings.each do |topping| %>
-            <li><%= topping.name %></li> <!-- Display the topping name -->
-          <% end %>
-        </ul>
-      <% else %>
-        No toppings added yet.
-      <% end %>
-      <%= link_to 'Edit', edit_pizza_path(pizza) %> |  <!-- Edit link -->
-      <%= link_to 'Delete', pizza_path(pizza), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" } %> <!-- Delete link -->
-    </li>
-  <% end %>
-</ul>
+<div class="container mx-auto py-4 max-w-4xl">
+  <h1 class="text-3xl font-bold mb-4 text-center">Pizzas</h1>
+  
+  <!-- New Pizza Link -->
+  <div class="text-center mb-4">
+    <%= link_to 'New Pizza', new_pizza_path, class: 'bg-blue-500 text-white font-semibold py-1 px-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-200' %>
+  </div>
+
+  <ul class="space-y-4">
+    <% @pizzas.each do |pizza| %>
+      <li class="flex flex-col space-y-2 p-2 mx-auto border rounded-lg shadow-md">
+        <div class="flex items-center justify-between">
+          <span class="text-xl font-semibold"><%= pizza.name %></span>
+          <div class="space-x-2">
+            <%= link_to 'Edit', edit_pizza_path(pizza), class: 'btn btn-secondary' %>
+            <%= link_to 'Delete', pizza_path(pizza), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+        
+        <% if pizza.toppings.any? %>
+             <p class="text-sm"><%= pizza.toppings.map(&:name).join(', ') %></p>
+
+        <% else %>
+          <p class="text-sm text-gray-500">No toppings added yet.</p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
