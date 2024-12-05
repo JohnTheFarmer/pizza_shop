@@ -1,0 +1,42 @@
+<div class="max-w-md mx-auto py-8">
+  <h2 class="text-3xl font-bold text-center mb-4">Login</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <% if flash[:alert] %>
+      <div class="text-red-600 bg-red-100 p-3 rounded mb-4">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= f.label :email, class: 'block text-sm font-semibold text-gray-700' %>
+      <%= f.email_field :email, autofocus: true, class: 'w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600' %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password, class: 'block text-sm font-semibold text-gray-700' %>
+      <%= f.password_field :password, class: 'w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600' %>
+    </div>
+
+    <div class="mb-4 flex items-center justify-between">
+      <div class="flex items-center">
+        <%= f.check_box :remember_me, class: 'mr-2' %>
+        <%= f.label :remember_me, class: 'text-sm text-gray-600' %>
+      </div>
+    </div>
+
+    <!-- Forgot password link below "Remember me" checkbox, aligned left -->
+    <div class="mb-6">
+      <%= link_to 'Forgot your password?', new_password_path(resource_name), class: 'text-sm text-blue-600 hover:underline' %>
+    </div>
+
+    <div>
+      <%= f.submit 'Log in', class: 'w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700' %>
+    </div>
+  <% end %>
+
+  <div class="mt-4 text-center">
+    <p class="text-sm text-gray-600">Don't have an account?</p>
+    <%= link_to 'Sign up', new_registration_path(resource_name), class: 'text-blue-600 hover:underline' %>
+  </div>
+</div>
