@@ -1,14 +1,32 @@
-<div class="container mx-auto py-4">
-  <h1 class="text-3xl font-bold">Manage Toppings</h1>
-  <%= link_to 'New Topping', new_topping_path, class: 'btn btn-primary' %>
-  <ul class="space-y-2">
+<div class="container mx-auto py-4 max-w-4xl">
+
+  <!-- Page Title -->
+  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Manage Toppings</h1>
+
+  <!-- New Topping Button -->
+  <div class="text-center mb-6">
+    <%= link_to 'New Topping', new_topping_path, 
+          class: 'bg-gray-700 px-4 py-2 rounded-md text-white border-none hover:bg-gray-600 hover:shadow-lg transition duration-200' %>
+  </div>
+
+  <!-- List of Toppings -->
+  <ul class="space-y-4">
     <% @toppings.each do |topping| %>
-      <li class="flex justify-between items-center">
-        <%= topping.name %>
-        <span class="text-sm text-gray-500"><%= topping.description %></span>
-        <div class="space-x-2">
-          <%= link_to 'Edit', edit_topping_path(topping), class: 'btn btn-secondary' %>
-          <%= link_to 'Delete', topping, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
+      <li class="bg-white shadow-lg rounded-md p-4 relative">
+
+        <!-- Action Buttons in Top-Right -->
+        <div class="absolute top-2 right-2 space-x-2">
+          <%= link_to 'Edit', edit_topping_path(topping), 
+                class: 'bg-blue-500 px-3 py-1 rounded-md text-white border-none hover:bg-blue-400 hover:shadow-md transition duration-200 text-sm' %>
+          <%= link_to 'Delete', topping, 
+                data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, 
+                class: 'bg-red-500 px-3 py-1 rounded-md text-white border-none hover:bg-red-400 hover:shadow-md transition duration-200 text-sm' %>
+        </div>
+
+        <!-- Topping Name and Description -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800"><%= topping.name %></h3>
+          <p class="text-sm text-gray-500"><%= topping.description %></p>
         </div>
       </li>
     <% end %>
