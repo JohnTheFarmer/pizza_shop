@@ -21,7 +21,7 @@ class PizzasController < ApplicationController
       @pizza = Pizza.new(pizza_params)
 
       # Assign toppings to pizza
-      topping_ids = params[:pizza][:topping_ids].reject(&:blank?) # Clean empty values
+      topping_ids = params[:pizza][:topping_ids].to_a.reject(&:blank?) # Clean empty values
       @pizza.toppings = Topping.find(topping_ids) if topping_ids.any?
 
       if @pizza.save
@@ -42,7 +42,7 @@ class PizzasController < ApplicationController
     end
 
     def update
-      topping_ids = params[:pizza][:topping_ids].reject(&:blank?) # Clean empty values
+      topping_ids = params[:pizza][:topping_ids].to_a.reject(&:blank?) # Clean empty values
       @pizza.toppings = Topping.find(topping_ids) if topping_ids.any?
 
       if @pizza.update(pizza_params)
