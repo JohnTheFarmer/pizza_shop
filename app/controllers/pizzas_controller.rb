@@ -25,7 +25,7 @@ class PizzasController < ApplicationController
       @pizza.toppings = Topping.find(topping_ids) if topping_ids.any?
 
       if @pizza.save
-        redirect_to pizzas_path, notice: "Pizza created successfully."
+        redirect_to pizzas_path, notice: "#{@pizza.name} pizza created successfully."
       else
         @toppings = Topping.all
         if @pizza.errors[:name].any?
@@ -46,7 +46,7 @@ class PizzasController < ApplicationController
       @pizza.toppings = Topping.find(topping_ids) if topping_ids.any?
 
       if @pizza.update(pizza_params)
-        redirect_to pizzas_path, notice: "Pizza updated successfully."
+        redirect_to pizzas_path, notice: "#{@pizza.name} pizza updated successfully."
       else
         @toppings = Topping.all
         if @pizza.errors[:name].any?
@@ -60,7 +60,7 @@ class PizzasController < ApplicationController
 
     def destroy
       @pizza.destroy
-      redirect_to pizzas_url, notice: "Pizza deleted successfully."
+      redirect_to pizzas_url, notice: "#{@pizza.name} pizza deleted successfully."
     end
 
     def add_topping

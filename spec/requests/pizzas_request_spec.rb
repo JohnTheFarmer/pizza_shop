@@ -78,7 +78,9 @@ RSpec.describe "Manage Pizzas", type: :request do
       delete pizza_path(pizza)
       expect(response).to redirect_to(pizzas_path)
       follow_redirect!
-      expect(response.body).not_to include(pizza.name)
+      expect(response.body).to include("#{pizza.name} pizza deleted successfully.")
+      body_without_flash = response.body.sub(/<div class="alert[^>]*>.*?<\/div>/m, '')
+      expect(body_without_flash).not_to include(pizza.name)
     end
   end
 end
