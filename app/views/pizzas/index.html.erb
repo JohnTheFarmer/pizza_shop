@@ -1,6 +1,4 @@
 <div class="container mx-auto py-4 max-w-4xl">
-
-  <!-- Page Title -->
   <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Pizzas</h1>
 
   <!-- New Pizza Button -->
@@ -10,29 +8,32 @@
   </div>
 
   <!-- List of Pizzas -->
-  <ul class="space-y-4">
-    <% @pizzas.each do |pizza| %>
-      <li class="bg-white shadow-lg rounded-md p-4 relative">
+  <% if @pizzas.empty? %>
+    <p class="text-center text-gray-500">No pizzas available.</p>
+  <% else %>
+    <ul class="space-y-4">
+      <% @pizzas.each do |pizza| %>
+        <li class="bg-white shadow-lg rounded-md p-4 relative">
+          <!-- Action Buttons in Top-Right -->
+          <div class="absolute top-2 right-2 space-x-2">
+            <%= link_to 'Edit', edit_pizza_path(pizza),
+                  class: 'bg-blue-500 px-3 py-1 rounded-md text-white border-none hover:bg-blue-400 hover:shadow-md transition duration-200 text-sm' %>
+            <%= link_to 'Delete', pizza_path(pizza),
+                  data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" },
+                  class: 'bg-red-500 px-3 py-1 rounded-md text-white border-none hover:bg-red-400 hover:shadow-md transition duration-200 text-sm' %>
+          </div>
 
-        <!-- Action Buttons in Top-Right -->
-        <div class="absolute top-2 right-2 space-x-2">
-          <%= link_to 'Edit', edit_pizza_path(pizza),
-                class: 'bg-blue-500 px-3 py-1 rounded-md text-white border-none hover:bg-blue-400 hover:shadow-md transition duration-200 text-sm' %>
-          <%= link_to 'Delete', pizza_path(pizza),
-                data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" },
-                class: 'bg-red-500 px-3 py-1 rounded-md text-white border-none hover:bg-red-400 hover:shadow-md transition duration-200 text-sm' %>
-        </div>
-
-        <!-- Pizza Name and Toppings -->
-        <div>
-          <h3 class="text-xl font-semibold text-gray-800"><%= pizza.name %></h3>
-          <% if pizza.toppings.any? %>
-            <p class="text-sm text-gray-600"><%= pizza.toppings.map(&:name).join(', ') %></p>
-          <% else %>
-            <p class="text-sm text-gray-500">No toppings added yet.</p>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+          <!-- Pizza Name and Toppings -->
+          <div>
+            <h3 class="text-xl font-semibold text-gray-800"><%= pizza.name %></h3>
+            <% if pizza.toppings.any? %>
+              <p class="text-sm text-gray-600"><%= pizza.toppings.map(&:name).join(', ') %></p>
+            <% else %>
+              <p class="text-sm text-gray-500">No toppings added yet.</p>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

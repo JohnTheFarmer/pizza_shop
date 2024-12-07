@@ -2,22 +2,8 @@
   <h1 class="text-3xl font-bold text-gray-800 mb-6">New Pizza</h1>
 
   <%= form_with(model: @pizza, local: true) do |form| %>
-    <div class="mb-6">
-      <%= form.label :name, 'Pizza Name', class: 'block text-sm font-semibold text-gray-700' %>
-      <%= form.text_field :name, class: 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500' %>
-    </div>
-
-    <div class="mb-6">
-      <%= form.label :topping_ids, 'Toppings', class: 'block text-sm font-semibold text-gray-700' %><br>
-      <div class="grid grid-cols-2 gap-4 mt-2">
-        <%= form.collection_check_boxes :topping_ids, @toppings, :id, :name do |b| %>
-          <div class="flex items-center space-x-2">
-            <%= b.check_box(class: 'form-checkbox h-4 w-4 text-blue-500') %>
-            <%= b.label(class: 'text-sm text-gray-700') { b.object.name } %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render 'form', form: form, field: :name, label: 'Pizza Name' %>
+    <%= render 'form', form: form, field: :topping_ids, label: 'Toppings' %>
 
     <div class="mt-6">
       <%= form.submit 'Create Pizza', class: 'w-full py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50' %>
