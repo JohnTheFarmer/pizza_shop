@@ -1,4 +1,3 @@
-# spec/requests/home_request_spec.rb
 require 'rails_helper'
 
 RSpec.describe "HomeController", type: :request do
