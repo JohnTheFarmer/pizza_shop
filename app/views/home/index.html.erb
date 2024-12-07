@@ -13,11 +13,11 @@
     <% @pizzas.each do |pizza| %>
       <div class="bg-white shadow-lg rounded-xl p-6 flex flex-col h-full">
         <h3 class="text-3xl font-semibold text-gray-800 mb-3"><%= pizza.name %></h3>
-        <% if pizza.toppings.any? %>
-          <p class="text-sm text-gray-600 break-words"><%= pizza.toppings.map(&:name).join(', ') %></p>
-        <% else %>
-          <p class="text-sm text-gray-500">No toppings added yet.</p>
-        <% end %>
+
+        <!-- Display toppings if available, otherwise show message -->
+        <p class="text-sm text-gray-600">
+          <%= pizza.toppings.any? ? pizza.toppings.map(&:name).join(', ') : 'No toppings added yet.' %>
+        </p>
       </div>
     <% end %>
   </div>
