@@ -1,8 +1,7 @@
 class ToppingsController < ApplicationController
   before_action :set_topping, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  before_action :authorize_owner, only: [ :index ]
-
+  before_action :authorize_owner
   def show
   end
 

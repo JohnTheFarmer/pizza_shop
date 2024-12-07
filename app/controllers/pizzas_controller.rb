@@ -2,7 +2,7 @@ class PizzasController < ApplicationController
     before_action :set_pizza, only: %i[show edit update destroy add_topping remove_topping]
     before_action :set_topping, only: %i[add_topping remove_topping]
     before_action :authenticate_user!
-    before_action :authorize_owner_or_chef, only: [ :index ]
+    before_action :authorize_owner_or_chef
 
 
     def index
