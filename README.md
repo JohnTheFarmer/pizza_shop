@@ -105,11 +105,33 @@ Password: password
 
 # Running Tests Locally
 
+### Run the Tests
 
-## Run the Tests
-you can run all the tests by executing the following command in the terminal:
-    ```
-    rspec
-    ```
+Before running the tests, ensure you complete the following setup steps:
+
+### Install Required Gems
+```
+bundle install
+```
+
+### Precompile Assets
+```
+rails assets:precompile
+```
+
+### Verify `libnss3` Installation, Required for Selenium Driver for System Testing
+```
+dpkg -l | grep libnss3
+```
+
+### If `libnss3` is not installed, try to run the following to install additional dependencies:
+```
+sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
+```
+
+You can run all the tests by executing the following command in the terminal:
+```
+rspec
+```
 
 This will run all the tests in your project.
