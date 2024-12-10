@@ -53,5 +53,4 @@ Rails.application.configure do
 
   # Enable eager loading in test environment
   config.eager_load = true
-  config.assets.compile = true
 end
