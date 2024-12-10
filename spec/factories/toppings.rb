@@ -11,7 +11,7 @@ FactoryBot.define do
     end
 
     trait :pepperoni do
-      name { 'pepperoni' }
+      name { 'Pepperoni' }
     end
 
     trait :vegan do
