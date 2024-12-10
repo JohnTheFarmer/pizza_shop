@@ -39,6 +39,11 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
 
+  config.before(:each, type: :system) do
+    # Use Selenium with Chrome (headless or non-headless)
+    driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')

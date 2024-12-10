@@ -14,6 +14,11 @@ FactoryBot.define do
       toppings { [ create(:topping, :pepperoni) ] }
     end
 
+    trait :tomato do
+      name { "Tomato" }
+      toppings { [ create(:topping, :tomato) ] }
+    end
+
     trait :cheese do
       name { "Cheese" }
       toppings { [ create(:topping, :cheese) ] }
