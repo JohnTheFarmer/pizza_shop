@@ -126,6 +126,7 @@ dpkg -l | grep libnss3
 
 ### If `libnss3` is not installed, try to run the following to install additional dependencies:
 ```
+apt install libnss
 sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
 ```
 
