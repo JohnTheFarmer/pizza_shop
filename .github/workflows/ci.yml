@@ -80,6 +80,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install Rails dependencies
+        run: bundle install
+
+      - name: Precompile assets
+        run: RAILS_ENV=production bin/rails assets:precompile
+
       - name: Prepare database
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
